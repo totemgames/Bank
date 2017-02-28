@@ -1,5 +1,6 @@
 package com.ttem.model.transaction.client;
 
+import com.ttem.exception.transaction.client.wireout.valid.WireOutAmountException;
 import com.ttem.exception.transaction.client.wireout.valid.WireOutDoneException;
 import com.ttem.model.account.Account;
 
@@ -45,6 +46,13 @@ public class WireOut extends ClientTransaction {
     private boolean isNotDone() throws WireOutDoneException {
         if (this.isDone()){
             throw new WireOutDoneException(this.toString() + " this transaction is completed");
+        }
+        return true;
+    }
+
+    private boolean amountValid() throws WireOutAmountException {
+        if (this.getAmount() <= 0.0){
+            throw new WireOutAmountException(this.getAmount() + " invalid amount");
         }
         return true;
     }

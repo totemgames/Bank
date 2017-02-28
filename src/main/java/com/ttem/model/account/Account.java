@@ -25,6 +25,22 @@ public class Account {
         return true;
     }
 
+    public byte[] getNumber() {
+        return this.number;
+    }
+
+    public String getDescription() {
+        return this.description;
+    }
+
+    public List<AccountTransaction> getHistoryTransaction() {
+        return this.historyTransaction;
+    }
+
+    private boolean addTransactionToDataBase(final AccountTransaction transaction) {
+        return this.historyTransaction.add(transaction);
+    }
+
     private List<AccountTransaction> getHistoryTransactionFromDataBase() {
         return new ArrayList<>();
     }

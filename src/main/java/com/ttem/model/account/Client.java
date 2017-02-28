@@ -24,6 +24,18 @@ public class Client extends Person {
         return false;
     }
 
+    public boolean isValid() {
+        return true;
+    }
+
+    public List<ClientTransaction> getHistoryTransaction() {
+        return this.historyTransaction;
+    }
+
+    public List<Account> getAccountList() {
+        return this.accountList;
+    }
+
     private boolean isNewAccount(final Account newAccount) throws AccountDuplicateException {
         for (Account existingAccount : this.getAccountList()) {
             if (existingAccount == newAccount){
@@ -35,18 +47,6 @@ public class Client extends Person {
 
     private boolean addNewAccountToDataBase(final Account newAccount) {
         return this.accountList.add(newAccount);
-    }
-
-    public boolean isValid() {
-        return true;
-    }
-
-    public List<ClientTransaction> getHistoryTransaction() {
-        return this.historyTransaction;
-    }
-
-    public List<Account> getAccountList() {
-        return this.accountList;
     }
 
     private List<ClientTransaction> getHistoryTransactionFromDataBase() {

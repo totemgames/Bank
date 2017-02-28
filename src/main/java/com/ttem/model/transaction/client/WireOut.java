@@ -23,6 +23,18 @@ public class WireOut extends ClientTransaction {
         return false;
     }
 
+    public Account getToAccount() {
+        return this.toAccount;
+    }
+
+    public String getCountry() {
+        return this.country;
+    }
+
+    public byte[] getSwift() {
+        return this.swift;
+    }
+
     public static class Builder{
 
         private  double amount;

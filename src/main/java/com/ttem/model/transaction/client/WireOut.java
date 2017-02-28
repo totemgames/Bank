@@ -3,6 +3,7 @@ package com.ttem.model.transaction.client;
 import com.ttem.exception.transaction.client.wireout.valid.WireOutAccountException;
 import com.ttem.exception.transaction.client.wireout.valid.WireOutAmountException;
 import com.ttem.exception.transaction.client.wireout.valid.WireOutDoneException;
+import com.ttem.exception.transaction.client.wireout.valid.WireOutSwiftException;
 import com.ttem.model.account.Account;
 
 import java.util.Arrays;
@@ -64,6 +65,13 @@ public class WireOut extends ClientTransaction {
         }
         else if (getToAccount().getNumber().length != 15){
             throw new WireOutAccountException(getToAccount().toString() + " this account has invalid number");
+        }
+        return true;
+    }
+
+    private boolean swiftValid() throws WireOutSwiftException {
+        if (this.getSwift().length != 15){
+            throw new WireOutSwiftException(Arrays.toString(this.swift) + " invalid swift");
         }
         return true;
     }

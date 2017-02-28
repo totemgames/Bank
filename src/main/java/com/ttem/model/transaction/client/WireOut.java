@@ -1,5 +1,6 @@
 package com.ttem.model.transaction.client;
 
+import com.ttem.exception.transaction.client.wireout.valid.WireOutDoneException;
 import com.ttem.model.account.Account;
 
 import java.util.Arrays;
@@ -39,6 +40,13 @@ public class WireOut extends ClientTransaction {
         this.setDone(true);
         this.setDate(new Date());
         return this.isDone();
+    }
+
+    private boolean isNotDone() throws WireOutDoneException {
+        if (this.isDone()){
+            throw new WireOutDoneException(this.toString() + " this transaction is completed");
+        }
+        return true;
     }
 
     public static class Builder{

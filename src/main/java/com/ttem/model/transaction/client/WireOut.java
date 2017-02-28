@@ -1,5 +1,6 @@
 package com.ttem.model.transaction.client;
 
+import com.ttem.exception.transaction.client.wireout.WireOutException;
 import com.ttem.exception.transaction.client.wireout.valid.*;
 import com.ttem.model.account.Account;
 
@@ -20,7 +21,10 @@ public class WireOut extends ClientTransaction {
     }
 
     @Override
-    public boolean doTransaction() {
+    public boolean doTransaction() throws WireOutException {
+        if(this.isValid() && executionOfTransaction()){
+            return true;
+        }
         return false;
     }
 

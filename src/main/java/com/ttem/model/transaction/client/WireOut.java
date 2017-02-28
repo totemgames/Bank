@@ -1,5 +1,6 @@
 package com.ttem.model.transaction.client;
 
+import com.ttem.exception.transaction.client.wireout.valid.WireOutAccountException;
 import com.ttem.exception.transaction.client.wireout.valid.WireOutAmountException;
 import com.ttem.exception.transaction.client.wireout.valid.WireOutDoneException;
 import com.ttem.model.account.Account;
@@ -53,6 +54,16 @@ public class WireOut extends ClientTransaction {
     private boolean amountValid() throws WireOutAmountException {
         if (this.getAmount() <= 0.0){
             throw new WireOutAmountException(this.getAmount() + " invalid amount");
+        }
+        return true;
+    }
+
+    private boolean accountValid() throws WireOutAccountException {
+        if (this.getToAccount() == null){
+            return false;
+        }
+        else if (getToAccount().getNumber().length != 15){
+            throw new WireOutAccountException(getToAccount().toString() + " this account has invalid number");
         }
         return true;
     }

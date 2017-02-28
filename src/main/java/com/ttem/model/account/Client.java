@@ -2,6 +2,7 @@ package com.ttem.model.account;
 
 import com.ttem.exception.account.AccountDuplicateException;
 import com.ttem.exception.account.AccountException;
+import com.ttem.exception.transaction.client.ClientTransactionException;
 import com.ttem.model.transaction.client.ClientTransaction;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +21,14 @@ public class Client extends Person {
     public boolean addNewAccount(final Account newAccount) throws AccountException {
         if (newAccount != null && newAccount.isValid() && isNewAccount(newAccount)){
             return addNewAccountToDataBase(newAccount);
+        }
+        return false;
+    }
+
+    public boolean doTransaction(final ClientTransaction transaction) throws ClientTransactionException {
+        if (this.isValid() && transaction != null && transaction.doTransaction()){
+            addTransactionToDataBase(transaction);
+            return true;
         }
         return false;
     }

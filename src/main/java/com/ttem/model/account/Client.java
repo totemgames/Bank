@@ -20,6 +20,18 @@ public class Client extends Person {
         return this.accountList.add(newAccount);
     }
 
+    public boolean isValid() {
+        return true;
+    }
+
+    public List<ClientTransaction> getHistoryTransaction() {
+        return this.historyTransaction;
+    }
+
+    public List<Account> getAccountList() {
+        return this.accountList;
+    }
+
     private List<ClientTransaction> getHistoryTransactionFromDataBase() {
         return new ArrayList<>();
     }

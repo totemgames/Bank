@@ -49,6 +49,10 @@ public class Client extends Person {
         return this.accountList.add(newAccount);
     }
 
+    private boolean addTransactionToDataBase(final ClientTransaction transaction) {
+        return this.historyTransaction.add(transaction);
+    }
+
     private List<ClientTransaction> getHistoryTransactionFromDataBase() {
         return new ArrayList<>();
     }

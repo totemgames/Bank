@@ -35,6 +35,12 @@ public class WireOut extends ClientTransaction {
         return this.swift;
     }
 
+    private boolean executionOfTransaction() {
+        this.setDone(true);
+        this.setDate(new Date());
+        return this.isDone();
+    }
+
     public static class Builder{
 
         private  double amount;

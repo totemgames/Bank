@@ -1,7 +1,7 @@
 package com.ttem.model.account;
 
+import com.ttem.exception.account.AccountDuplicateException;
 import com.ttem.model.transaction.client.ClientTransaction;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,6 +14,15 @@ public class Client extends Person {
         super(firstName, lastName);
         this.historyTransaction = getHistoryTransactionFromDataBase();
         this.accountList = getAccountListFromDataBase();
+    }
+
+    private boolean isNewAccount(final Account newAccount) throws AccountDuplicateException {
+        for (Account existingAccount : this.getAccountList()) {
+            if (existingAccount == newAccount){
+                throw new AccountDuplicateException(newAccount.toString() + " this account already exists");
+            }
+        }
+        return true;
     }
 
     private boolean addNewAccountToDataBase(final Account newAccount) {

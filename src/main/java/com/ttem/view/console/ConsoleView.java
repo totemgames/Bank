@@ -13,13 +13,13 @@ public class ConsoleView implements DefaultView {
     public void printBank(final Bank bank) {
         System.out.println(bank.getName());
         System.out.println("Clients list:");
-        for (Client c : bank.getClientDataBase()) {
+        for (Client c : bank.getClientDataBase()){
             System.out.println(c.getFirstName());
         }
         System.out.println();
     }
 
-    public void printClient(final Client client){
+    public void printClient(final Client client) {
         System.out.println("Client: " + client.getFirstName());
         System.out.println("Client transactions");
         for (ClientTransaction clientTransaction : client.getHistoryTransaction()){
@@ -28,7 +28,7 @@ public class ConsoleView implements DefaultView {
         System.out.println();
     }
 
-    public void printAccount(final Account account){
+    public void printAccount(final Account account) {
         System.out.println("Account: " + account);
         System.out.println("Client transactions");
         for (AccountTransaction accountTransaction : account.getHistoryTransaction()){

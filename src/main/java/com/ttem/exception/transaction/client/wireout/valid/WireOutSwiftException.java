@@ -1,6 +1,6 @@
 package com.ttem.exception.transaction.client.wireout.valid;
 
-public class WireOutSwiftException extends WireOutValidException{
+public class WireOutSwiftException extends WireOutValidException {
 
     public WireOutSwiftException() {
     }

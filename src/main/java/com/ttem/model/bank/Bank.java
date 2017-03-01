@@ -1,6 +1,7 @@
 package com.ttem.model.bank;
 
 import com.ttem.exception.account.client.ClientDuplicateException;
+import com.ttem.exception.account.client.ClientException;
 import com.ttem.model.account.Client;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,6 +14,13 @@ public class Bank {
     public Bank(final String name) {
         this.name = name;
         this.clientDataBase = getClientListFromDataBase();
+    }
+
+    public boolean addNewClient(final Client newClient) throws ClientException {
+        if (newClient.isValid() && isNewClient(newClient)){
+            return addClientToDataBase(newClient);
+        }
+        return false;
     }
 
     public String getName() {

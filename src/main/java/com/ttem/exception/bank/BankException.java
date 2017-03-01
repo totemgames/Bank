@@ -1,6 +1,6 @@
 package com.ttem.exception.bank;
 
-public class BankException extends Exception{
+public class BankException extends Exception {
 
     public BankException() {
     }

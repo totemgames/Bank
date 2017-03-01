@@ -8,7 +8,7 @@ import org.junit.Test;
 public class TestAddNewClient {
 
     private static Bank bank = new Bank("ING");
-    private static Client correctClient = new Client("Bob", "Ross");;
+    private static Client correctClient = new Client("Bob", "Ross");
 
     @Test
     public void whenInputCorrectClient() throws Exception {

@@ -2,6 +2,7 @@ package com.ttem.model.transaction.client.wireoutclass;
 
 import com.ttem.exception.transaction.TransactionException;
 import com.ttem.exception.transaction.client.wireout.WireOutException;
+import com.ttem.exception.transaction.client.wireout.valid.WireOutAccountException;
 import com.ttem.exception.transaction.client.wireout.valid.WireOutAmountException;
 import com.ttem.exception.transaction.client.wireout.valid.WireOutSwiftException;
 import com.ttem.model.account.Account;
@@ -82,5 +83,15 @@ public class TestDoTransaction {
     @Test(expected = WireOutSwiftException.class)
     public void whenInputIncorrectWireOutSwift() throws WireOutException {
         incorrectWireOutSwift.doTransaction();
+    }
+
+    @Test(expected = WireOutAccountException.class)
+    public void whenInputIncorrectWireOutAccountNumber() throws TransactionException {
+        incorrectWireOutAccountNumber.doTransaction();
+    }
+
+    @Test
+    public void whenInputIncorrectWireOutAccountNull() throws TransactionException {
+        Assert.assertFalse(incorrectWireOutAccountNull.doTransaction());
     }
 }

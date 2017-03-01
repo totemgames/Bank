@@ -20,7 +20,7 @@ public class Account {
         this.description = description;
     }
 
-    public boolean doTransaction(final AccountTransaction transaction) throws TransactionException, AccountException{
+    public boolean doTransaction(final AccountTransaction transaction) throws TransactionException, AccountException {
         if (this.isValid() && transaction != null && transaction.doTransaction()){
             addTransactionToDataBase(transaction);
             return true;
@@ -28,7 +28,7 @@ public class Account {
         return false;
     }
 
-    public boolean isValid() throws AccountNumberException{
+    public boolean isValid() throws AccountNumberException {
         if (this.number.length != 15){
             throw  new AccountNumberException(Arrays.toString(number) + " invalid account number");
         }

@@ -3,7 +3,6 @@ package com.ttem.model.transaction.client;
 import com.ttem.exception.transaction.client.wireout.WireOutException;
 import com.ttem.exception.transaction.client.wireout.valid.*;
 import com.ttem.model.account.Account;
-
 import java.util.Arrays;
 import java.util.Date;
 
@@ -137,7 +136,7 @@ public class WireOut extends ClientTransaction {
             return this;
         }
 
-        public WireOut build(){
+        public WireOut build() {
             return new WireOut(this);
         }
     }

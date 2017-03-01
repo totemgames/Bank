@@ -6,7 +6,6 @@ import com.ttem.exception.transaction.account.deposit.valid.DepositAmountExcepti
 import com.ttem.exception.transaction.account.deposit.valid.DepositDoneException;
 import com.ttem.exception.transaction.account.deposit.valid.DepositValidException;
 import com.ttem.model.account.Account;
-
 import java.util.Date;
 
 public class Deposit extends AccountTransaction {

@@ -6,7 +6,6 @@ import com.ttem.exception.transaction.account.check.valid.CheckAmountException;
 import com.ttem.exception.transaction.account.check.valid.CheckDoneException;
 import com.ttem.exception.transaction.account.check.valid.CheckValidException;
 import com.ttem.model.account.Account;
-
 import java.util.Date;
 
 public class Check extends AccountTransaction {

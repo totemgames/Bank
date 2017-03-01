@@ -1,6 +1,7 @@
 package com.ttem.model.transaction.account;
 
 import com.ttem.exception.transaction.account.AccountTransactionException;
+import com.ttem.exception.transaction.account.check.valid.CheckAmountException;
 import com.ttem.exception.transaction.account.check.valid.CheckDoneException;
 import com.ttem.model.account.Account;
 
@@ -33,6 +34,13 @@ public class Check extends AccountTransaction {
     private boolean isNotDone() throws CheckDoneException {
         if (this.isDone()){
             throw new CheckDoneException(this.toString() + " this transaction is completed");
+        }
+        return true;
+    }
+
+    private boolean amountValid() throws CheckAmountException {
+        if (this.getAmount() <= 0.0){
+            throw new CheckAmountException(this.getAmount() + " invalid amount");
         }
         return true;
     }

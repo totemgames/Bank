@@ -1,8 +1,13 @@
 package com.ttem.model.transaction.account.depositclass;
 
+import com.ttem.exception.transaction.TransactionException;
+import com.ttem.exception.transaction.account.deposit.valid.DepositAccountException;
+import com.ttem.exception.transaction.account.deposit.valid.DepositAmountException;
 import com.ttem.model.account.Account;
 import com.ttem.model.transaction.account.Deposit;
+import org.junit.Assert;
 import org.junit.BeforeClass;
+import org.junit.Test;
 
 public class TestDoTransaction {
 
@@ -23,5 +28,25 @@ public class TestDoTransaction {
         incorrectDepositAmount = new Deposit(-3.4, correctAccount, "incorrect amount");
         incorrectDepositAccountNumber = new Deposit(3.4, incorrectAccountNumber, "incorrect account number");
         incorrectDepositAccountNull = new Deposit(3.4, null, "incorrect account null");
+    }
+
+    @Test
+    public void whenInputCorrectDeposit() throws TransactionException {
+        Assert.assertTrue(correctDeposit.doTransaction());
+    }
+
+    @Test(expected = DepositAmountException.class)
+    public void whenInputIncorrectDepositAmount() throws TransactionException {
+        incorrectDepositAmount.doTransaction();
+    }
+
+    @Test(expected = DepositAccountException.class)
+    public void whenInputIncorrectDepositAccountNumber() throws TransactionException {
+        incorrectDepositAccountNumber.doTransaction();
+    }
+
+    @Test
+    public void whenInputIncorrectDepositAccountNull() throws TransactionException {
+        Assert.assertFalse(incorrectDepositAccountNull.doTransaction());
     }
 }

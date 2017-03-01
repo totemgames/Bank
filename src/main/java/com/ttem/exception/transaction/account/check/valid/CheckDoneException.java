@@ -1,6 +1,6 @@
 package com.ttem.exception.transaction.account.check.valid;
 
-public class CheckDoneException extends CheckValidException{
+public class CheckDoneException extends CheckValidException {
 
     public CheckDoneException() {
     }

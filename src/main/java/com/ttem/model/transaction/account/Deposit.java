@@ -1,6 +1,7 @@
 package com.ttem.model.transaction.account;
 
 import com.ttem.exception.transaction.account.AccountTransactionException;
+import com.ttem.exception.transaction.account.deposit.valid.DepositAccountException;
 import com.ttem.exception.transaction.account.deposit.valid.DepositAmountException;
 import com.ttem.exception.transaction.account.deposit.valid.DepositDoneException;
 import com.ttem.model.account.Account;
@@ -41,6 +42,16 @@ public class Deposit extends AccountTransaction {
     private boolean amountValid() throws DepositAmountException {
         if (this.getAmount() <= 0.0){
             throw new DepositAmountException(this.getAmount() + " invalid amount");
+        }
+        return true;
+    }
+
+    private boolean accountValid() throws DepositAccountException {
+        if (this.getFromAccount() == null){
+            return false;
+        }
+        else if (getFromAccount().getNumber().length != 15){
+            throw new DepositAccountException(getFromAccount().toString() + " this account has invalid number");
         }
         return true;
     }

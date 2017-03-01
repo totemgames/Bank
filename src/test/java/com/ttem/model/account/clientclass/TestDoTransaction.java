@@ -1,9 +1,14 @@
 package com.ttem.model.account.clientclass;
 
+import com.ttem.exception.transaction.client.ClientTransactionException;
+import com.ttem.exception.transaction.client.wireout.valid.WireOutAccountException;
+import com.ttem.exception.transaction.client.wireout.valid.WireOutSwiftException;
 import com.ttem.model.account.Account;
 import com.ttem.model.account.Client;
 import com.ttem.model.transaction.client.WireOut;
+import org.junit.Assert;
 import org.junit.BeforeClass;
+import org.junit.Test;
 
 public class TestDoTransaction {
 
@@ -55,5 +60,25 @@ public class TestDoTransaction {
                 .setCountry("USA")
                 .setDescription("from Poland")
                 .build();
+    }
+
+    @Test
+    public void whenInputCorrectWireOut() throws ClientTransactionException {
+        Assert.assertTrue(correctClient.doTransaction(correctWireOut));
+    }
+
+    @Test(expected = WireOutSwiftException.class)
+    public void whenInputIncorrectWireOut() throws ClientTransactionException {
+        correctClient.doTransaction(incorrectWireOutSwift);
+    }
+
+    @Test(expected = WireOutAccountException.class)
+    public void whenInputIncorrectWireOutAccountNumber() throws ClientTransactionException {
+        correctClient.doTransaction(incorrectWireOutAccountNumber);
+    }
+
+    @Test
+    public void whenInputIncorrectWireOutAccountNull() throws ClientTransactionException {
+        Assert.assertFalse(correctClient.doTransaction(incorrectWireOutAccountNull));
     }
 }

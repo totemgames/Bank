@@ -1,6 +1,6 @@
 package com.ttem.model.transaction.account;
 
-import com.ttem.exception.transaction.account.AccountTransactionException;
+import com.ttem.exception.transaction.account.check.CheckException;
 import com.ttem.exception.transaction.account.check.valid.CheckAccountException;
 import com.ttem.exception.transaction.account.check.valid.CheckAmountException;
 import com.ttem.exception.transaction.account.check.valid.CheckDoneException;
@@ -19,7 +19,10 @@ public class Check extends AccountTransaction {
     }
 
     @Override
-    public boolean doTransaction() throws AccountTransactionException {
+    public boolean doTransaction() throws CheckException {
+        if(this.isValid() && executionOfTransaction()){
+            return true;
+        }
         return false;
     }
 

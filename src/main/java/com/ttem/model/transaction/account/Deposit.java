@@ -1,6 +1,7 @@
 package com.ttem.model.transaction.account;
 
 import com.ttem.exception.transaction.account.AccountTransactionException;
+import com.ttem.exception.transaction.account.deposit.DepositException;
 import com.ttem.exception.transaction.account.deposit.valid.DepositAccountException;
 import com.ttem.exception.transaction.account.deposit.valid.DepositAmountException;
 import com.ttem.exception.transaction.account.deposit.valid.DepositDoneException;
@@ -19,7 +20,10 @@ public class Deposit extends AccountTransaction {
     }
 
     @Override
-    public boolean doTransaction() throws AccountTransactionException {
+    public boolean doTransaction() throws DepositException {
+        if(this.isValid() && executionOfTransaction()){
+            return true;
+        }
         return false;
     }
 

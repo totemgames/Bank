@@ -1,6 +1,6 @@
 package com.ttem.exception.account.client;
 
-public class ClientDuplicateException extends ClientException{
+public class ClientDuplicateException extends ClientException {
 
     public ClientDuplicateException() {
     }

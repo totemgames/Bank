@@ -1,6 +1,6 @@
 package com.ttem.exception.account;
 
-public class AccountDuplicateException extends AccountException{
+public class AccountDuplicateException extends AccountException {
 
     public AccountDuplicateException() {
     }

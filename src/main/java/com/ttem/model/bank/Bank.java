@@ -14,6 +14,14 @@ public class Bank {
         this.clientDataBase = getClientListFromDataBase();
     }
 
+    public String getName() {
+        return this.name;
+    }
+
+    public List<Client> getClientDataBase() {
+        return this.clientDataBase;
+    }
+
     private List<Client> getClientListFromDataBase() {
         return new ArrayList<>();
     }

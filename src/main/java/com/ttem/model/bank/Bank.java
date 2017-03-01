@@ -1,5 +1,6 @@
 package com.ttem.model.bank;
 
+import com.ttem.exception.account.client.ClientDuplicateException;
 import com.ttem.model.account.Client;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +21,15 @@ public class Bank {
 
     public List<Client> getClientDataBase() {
         return this.clientDataBase;
+    }
+
+    private boolean isNewClient(final Client newClient) throws ClientDuplicateException {
+        for (Client existingClient : this.getClientDataBase()) {
+            if (existingClient == newClient){
+                throw new ClientDuplicateException(newClient.toString() + " this client already exists");
+            }
+        }
+        return true;
     }
 
     private boolean addClientToDataBase(final Client newClient) {

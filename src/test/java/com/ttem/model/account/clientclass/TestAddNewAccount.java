@@ -1,8 +1,12 @@
 package com.ttem.model.account.clientclass;
 
+import com.ttem.exception.account.AccountException;
+import com.ttem.exception.account.AccountNumberException;
 import com.ttem.model.account.Account;
 import com.ttem.model.account.Client;
+import org.junit.Assert;
 import org.junit.BeforeClass;
+import org.junit.Test;
 
 public class TestAddNewAccount {
 
@@ -19,5 +23,25 @@ public class TestAddNewAccount {
         incorrectAccountNull = null;
 
         correctClient = new Client("Bob", "Ross");
+    }
+
+    @Test
+    public void whenInputCorrectAccount() throws AccountException {
+        Account expectedAccount = correctAccount;
+
+        Assert.assertTrue(correctClient.addNewAccount(expectedAccount));
+
+        Account actualAccount = correctClient.getAccountList().get(0);
+        Assert.assertSame(expectedAccount, actualAccount);
+    }
+
+    @Test(expected = AccountNumberException.class)
+    public void whenInputIncorrectAccountNumber() throws AccountException {
+        correctClient.addNewAccount(incorrectAccountNumber);
+    }
+
+    @Test
+    public void whenInputIncorrectAccountNull() throws AccountException {
+        Assert.assertFalse(correctClient.addNewAccount(incorrectAccountNull));
     }
 }

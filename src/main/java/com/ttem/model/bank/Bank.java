@@ -22,6 +22,10 @@ public class Bank {
         return this.clientDataBase;
     }
 
+    private boolean addClientToDataBase(final Client newClient) {
+        return this.clientDataBase.add(newClient);
+    }
+
     private List<Client> getClientListFromDataBase() {
         return new ArrayList<>();
     }
